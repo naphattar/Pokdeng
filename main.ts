@@ -27,7 +27,7 @@ function getCard(): Card {
 function getHand(): [Card[], number] {
   const card1 = getCard();
   const card2 = getCard();
-  const score = (card1.getValue() + card2.getValue()) % 10;
+  const score = (card1.getValue() + card2.getValue());
   return [[card1, card2], score];
 }
 
