@@ -1,4 +1,4 @@
-import { getCard, getHand, playRound } from "../main";
+import { getCard, getHand} from "../main";
 
 jest.mock("../types/Card", () => {
     return {
@@ -34,5 +34,5 @@ jest.mock("../types/Card", () => {
       expect(score).toBeGreaterThanOrEqual(2);
       expect(score).toBeLessThanOrEqual(20);
     });
-    
+
   });
