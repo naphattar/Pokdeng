@@ -92,3 +92,5 @@ console.log("Welcome to Pok-Deng Game");
 console.log(`You start with ${chips} chips.`);
 
 startGame();
+
+export {getCard,getHand,playRound,startGame, askContinue} // for test
