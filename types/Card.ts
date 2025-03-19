@@ -32,6 +32,10 @@ class Card {
         this.cardType =  cardType;
         this.cardNumber = cardNumber;
     }
+
+    public equalValue(other : Card): boolean {
+        return (this.cardType === other.cardType) && (this.cardNumber === other.cardNumber);
+    }
     
     print() : string{
         return this.cardType + '-' + this.cardNumber;

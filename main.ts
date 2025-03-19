@@ -9,12 +9,19 @@ const rl = readline.createInterface({
 const suits = Object.values(CardType);
 const ranks = Object.values(CardNumber);
 
-let chips = 10;
+let chips = 5;
+let usedCards = new Set<string>();
 
 function getCard(): Card {
-  const suit = suits[Math.floor(Math.random() * suits.length)] as CardType;
-  const rank = ranks[Math.floor(Math.random() * ranks.length)] as CardNumber;
-  return new Card(suit, rank);
+  let card: Card;
+  do {
+    const suit = suits[Math.floor(Math.random() * suits.length)] as CardType;
+    const rank = ranks[Math.floor(Math.random() * ranks.length)] as CardNumber;
+    card = new Card(suit, rank);
+  } while (usedCards.has(card.print()));
+  
+  usedCards.add(card.print());
+  return card;
 }
 
 function getHand(): [Card[], number] {
@@ -27,6 +34,10 @@ function getHand(): [Card[], number] {
 function playRound(bet: number) {
   if (bet > chips || bet <= 0) {
     console.log("Invalid bet amount.");
+    return startGame();
+  }
+  if(usedCards.size === 52){
+    console.log("Card decks is out of card");
     return startGame();
   }
 
@@ -77,7 +88,7 @@ function startGame() {
   });
 }
 
-console.log("Welcome to Pok-Deng! 🎴");
+console.log("Welcome to Pok-Deng Game");
 console.log(`You start with ${chips} chips.`);
 
 startGame();
